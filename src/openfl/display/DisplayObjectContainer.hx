@@ -188,27 +188,6 @@ class DisplayObjectContainer extends InteractiveObject
 	**/
 	public function addChildAt(child:DisplayObject, index:Int):DisplayObject
 	{
-		if (child == null)
-		{
-			var error = new TypeError("Error #2007: Parameter child must be non-null.");
-			error.errorID = 2007;
-			throw error;
-		}
-		else if (child == this)
-		{
-			var error = new ArgumentError("Error #2024: An object cannot be added as a child of itself.");
-			error.errorID = 2024;
-			throw error;
-		}
-		#if ((haxe_ver >= "3.4.0") || !cpp)
-		else if (child.stage == child)
-		{
-			var error = new ArgumentError("Error #3783: A Stage object cannot be added as the child of another object.");
-			error.errorID = 3783;
-			throw error;
-		}
-		#end
-
 		if (index > __children.length || index < 0)
 		{
 			throw "Invalid index position " + index;
